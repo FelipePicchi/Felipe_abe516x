@@ -1,6 +1,11 @@
 ---
 layout: default
 ---
+# Introduction
+
+On this webpage, you can find an elaborate explanation of my ABE 516X (Data Science and Analytics for Agricultural and Biosystem Engineers) final project. During the course, I learned about research techniques linked with data science ideas and their practical use. The course involved conducting analyses and research on themes connected to Agriculture and Biosystem Engineering and Technology, methods for creating and preserving data analysis pipelines that can be replicated, the best approaches for displaying data visually and presenting data-driven results to diverse audiences, and principles of data ethics and integrity.
+
+During the semester, we learned about various topics and tools that researchers can use in ABE (i.e., Text Scrapping, Supervised and Unsupervised Machine Learning models, Cloud Shel and Git). Thus, in this project, I will explain how I used five of these research methods and concepts to improve my research on combining and analyzing streaming environment data for anomaly detection in swine production facilities.
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
