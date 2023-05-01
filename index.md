@@ -148,6 +148,45 @@ Smoothing using [Wavelet Transform](https://pywavelets.readthedocs.io/en/0.2.2/i
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
 
+```python
+import pywt
+
+def my_waveletFilter(Title, Data, variable, wavelet, level, output_plot=False):
+
+    df = Data[[variable]].copy()
+
+    # apply the wavelet transform
+    coeffs = pywt.wavedec(df[variable], wavelet, level=level, mode='symmetric')
+    coeffs[1:] = [pywt.threshold(i, value=5, mode='soft') for i in coeffs[1:]]
+    smoothed_data = pywt.waverec(coeffs, wavelet)
+
+    # creates a new column in the dataframe to store the smoothed data
+    df[f'{variable} smoothed'] = smoothed_data
+    
+
+    # creates a Plotly figure that shows both the actual and smoothed data
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=df.index, y=df[variable], mode='lines', name=variable))
+    fig.add_trace(go.Scatter(x=df.index, y=df[f'{variable} smoothed'], mode='lines', name=f'{variable} smoothed', opacity=0.5))
+
+    fig.update_layout(title= f'{Title} Actual vs Smoothed Data for {variable} with Wavelets', xaxis_title='Date', yaxis_title='Value')
+
+    # optionally output the Plotly figure
+    if output_plot:
+        fig.show()
+
+    smoothed_df = df.copy()
+    return smoothed_df
+```
+
+
+
+
+
+
+
+
 
 
 
