@@ -202,9 +202,9 @@ The nature of my data requires a good way of graphically visualizing it in order
     * Title = input string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
     * Plot output example:
     
-    **When all the sensors/features are selected:**
+        **When all the sensors/features are selected:**
     ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_df%20with%20all%20features.png)
-    **When only one sensors/feature is selected:**
+        **When only one sensors/feature is selected:**
     ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_df%20with%20only%20one%20feature.png)
    
 * **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
