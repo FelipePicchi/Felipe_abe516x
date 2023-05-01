@@ -22,7 +22,41 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 4.  Use of an unsupervised machine learning model for outlier/anomaly detection
 5.  Ability to make my analysis reproducible
 
+* * *
+
 # First Concept/Method: API
+
+My data can be obtained manually from the sponsoring company's website or through an API. By default, all the farm's data are stored for a maximum of fifteen days before being deleted. Therefore, before implementing the API with the knowledge gained in this course, I had to keep good track of when I had to manually download those files. For almost a year and a half, I have failed twice and missed the download window for a day or two, which is not a big deal when looking at the vast amount of data I have, but this could be better by having no missing days! 
+With the implementation of a script that can retrieve data from the API, I can forget about downloading the data myself and setting calendar reminders and alarms. In class, I wrote a functional Jupyther Notebook that can call, authenticate and download the CSV files of multiple gateways (Famrs) I have access. Even though I had a functional script on my hands, making those API calls was not completely autonomous since I had to press run on the notebook.
+From my application's API, I can perform two different requests. One that returns me the status (minimum and maximum readings) of every sensor connected to that gateway over the last 15-minute period or the other option that returns the status of every sensor over the last 24-hour window.
+My goal was to schedule when the script would run. I researched the best methods to schedule a Python script and found multiple ways to do it using Microsoft Azure, Windows Task Scheduler, JupyterLab, etc. My initial idea was to keep two laptops executing the script every 24 hours at midnight using Windows Task Scheduler. It worked fine for the first few days, but I started noticing that it was not making the calls or the files were not being saved properly. My second option was to have JupytherLab running on those computers, and I had no issues with it both during setup and execution over the last weeks.
+
+### How to use Jupyther Scheduler:
+1. Install Jupyther Scheduler from the PyPI registry via pip
+2. Open JupyterLab (Can be easily found on Anaconda Navigator) 
+3. Select open the Jupyter Notebook that contains the API routine
+4. Click on the blue calendar icon located at the top left corner of your notebook
+5. Create a Job name
+6. Choose output formats (leave both default options active)
+7. Select "Run on a schedule"
+8. Choose the Interval, Time, and Time zone you wish to use
+9. Press "Create"
+10. Now you can see the status and general information of your job
+
+Remember that Jupyter Scheduler runs Jupyter notebooks in the background, either once or on a schedule. I recommend giving preference to JupyterLab due to the ease of making changes to your job configurations and because it is optimized to run Jupyter Notebooks. For more information on how to schedule your Jupyter Notebooks refer to [Jupyter Scheduler Library](https://jupyter-scheduler.readthedocs.io/en/latest/)
+
+### Functions description:
+
+* **gitData()**: function uses as argument input the name of the farm from which we desire to pull data from
+* **savingData()**: function uses the name of the farm as an argument and saves the data in a csv file. Notice that for every request data, we save the output in the cvs file as a new line input. If the file is not existent, it will be created in that directory
+* **job()**: function allows us to call both functions described above for every farm that we desire
+     * time.sleep(15) was used as a 15 seconds request buffer since the API does not allow users to make calls in less than 10 seconds in between requests
+
+**Disclaimer:** The notebook was not embedded in this website because it contains confidential information. Access will be provided for the instructor in a separate platform.
+
+# Second Concept/Method: Data Wrangling
+
+
 
 
 
