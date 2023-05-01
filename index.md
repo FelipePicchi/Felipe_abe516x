@@ -471,14 +471,14 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 
 | Resampling window | Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) |
 |:----------------- |:---------------|:------------------|:-------------------------------------------------|
-|                   | West Room Temp | None              | XXXX                                             |
+|20 minutes         | West Room Temp | None              | XXXX                                             |
 |20 minutes         | West Room Temp | Moving Average    | XXXX                                             |
-|                   | West Room Temp | Savitzky-Golay    | XXXX                                             |
-|                   | West Room Temp | Wavelets          | XXXX                                             |
-|                   | West Room Temp | None              | XXXX                                             |
-| 1 hour            | West Room Temp | Moving Average    | XXXX                                             |
-|                   | West Room Temp | Savitzky-Golay    | XXXX                                             |
-|                   | West Room Temp | Wavelets          | XXXX                                             |
+|20 minutes         | West Room Temp | Savitzky-Golay    | XXXX                                             |
+|20 minutes         | West Room Temp | Wavelets          | XXXX                                             |
+|1 hour             | West Room Temp | None              | XXXX                                             |
+|1 hour             | West Room Temp | Moving Average    | XXXX                                             |
+|1 hour             | West Room Temp | Savitzky-Golay    | XXXX                                             |
+|1 hour             | West Room Temp | Wavelets          | XXXX                                             |
 
 
 
