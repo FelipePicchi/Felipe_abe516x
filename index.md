@@ -118,6 +118,34 @@ Smoothing using moving average is the first of three smoothing techniques I expl
     * window_size = int, timedelta, str, offset, or BaseIndexer subclass. Size of the moving window: If an integer, the fixed number of observations used for each window. If a timedelta, str, or offset, the time period of each window. Each window will be a variable sized based on the observations included in the time-period. This is only valid for datetimelike indexes
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
+```python
+def my_movingAvg(Title, Data, variable, window_size, output_plot=False):
+    df = Data[[variable]].copy()
+
+    # apply the moving average to smooth the data
+    smoothed_data = df[variable].rolling(window_size).mean()
+
+    # creates a new column in the dataframe to store the smoothed data
+    df[f'{variable} smoothed'] = smoothed_data
+
+    # creates a Plotly figure that shows both the actual and smoothed data
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=df.index, y=df[variable], mode='lines', name=variable))
+    fig.add_trace(go.Scatter(x=df.index, y=df[f'{variable} smoothed'], mode='lines', name=f'{variable} smoothed', opacity=0.5))
+
+    fig.update_layout(title= f'{Title} Actual vs Smoothed Data for {variable} with Moving Average', xaxis_title='Date', yaxis_title='Value')
+
+    # optionally output the Plotly figure
+    if output_plot:
+        fig.show()
+
+    smoothed_df = df.copy()
+    smoothed_df = smoothed_df.fillna(method='bfill')
+    
+    return smoothed_df
+```
+
 ### Smoothing with Savitzky-Golay
 
 Smoothing using [Savitzky-Golay](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html) is the second of three smoothing techniques I explore in this project. This is also used to reduce noise and to extract trends from time-series data. It works by fitting a polynomial function to a sliding window of data points and using the coefficients of that polynomial to estimate the smoothed value at the center of the window. This process is repeated for each data point in the series, resulting in a smoothed time series. Unlike moving average smoothing, Savitzky-Golay smoothing allows for the preservation of high-frequency features in the data while still reducing noise.
@@ -133,6 +161,36 @@ Smoothing using [Savitzky-Golay](https://docs.scipy.org/doc/scipy/reference/gene
     * poly_order = integer representing the order of the polynomial used to fit the samples. poly_order must be less than window_length
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
+```python
+from scipy.signal import savgol_filter
+
+def my_savgolFilter(Title, Data, variable, window_size, poly_order, output_plot=False):
+
+    df = Data[[variable]].copy()
+
+    # apply the Savitzky-Golay filter
+    smoothed_data = savgol_filter(df[variable], window_size, poly_order, mode='interp')
+
+    # creates a new column in the dataframe to store the smoothed data
+    df[f'{variable} smoothed'] = smoothed_data
+
+    # creates a Plotly figure that shows both the actual and smoothed data
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=df.index, y=df[variable], mode='lines', name=variable))
+    fig.add_trace(go.Scatter(x=df.index, y=df[f'{variable} smoothed'], mode='lines', name=f'{variable} smoothed', opacity=0.5))
+
+    fig.update_layout(title= f'{Title} Actual vs Smoothed Data for {variable} with Savitzky-Golay', xaxis_title='Date', yaxis_title='Value')
+
+    # optionally output the Plotly figure
+    if output_plot:
+        fig.show()
+
+    smoothed_df = df.copy()
+    
+    return smoothed_df
+```
+
 ### Smoothing with Wavelet Transform
 
 Smoothing using [Wavelet Transform](https://pywavelets.readthedocs.io/en/0.2.2/index.html#) is the last smoothing technique I explore in this project. As the previous, this technique is used for reducing noise and identifying trends in time-series data. It works by decomposing the signal into a series of wavelet coefficients at different scales and frequencies specified by the user. By discarding the high-frequency coefficients representing noise or other data fluctuations, the smoothed signal preserves the low-frequency coefficients corresponding to more prevalent trends in the data. Different from the other methods, this is a bit more complex, given the various wavelet [families](https://wavelets.pybytes.com/) I can experiment with.
@@ -146,7 +204,6 @@ Smoothing using [Wavelet Transform](https://pywavelets.readthedocs.io/en/0.2.2/i
     * wavelet = string wavelet to use in the transform (i.e., "db1", "haar", "bior"...)
     * level = integer representing the number of decomposition steps to perform
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
-
 
 ```python
 import pywt
