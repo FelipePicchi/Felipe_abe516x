@@ -206,9 +206,9 @@ The nature of my data requires a good way of graphically visualizing it in order
     * Plot output example:
     
         **When all the sensors/features are selected:**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_df%20with%20all%20features.png)
+    ![picture](_includes/plot_df%20with%20all%20features.png)
         **When only one sensors/feature is selected:**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_df%20with%20only%20one%20feature.png)
+    ![picture](_includes/plot_df%20with%20only%20one%20feature.png)
    
 * **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
 
@@ -216,7 +216,7 @@ The nature of my data requires a good way of graphically visualizing it in order
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2", etc)
     * Plot output example:
     
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_dfHTW.png)
+    ![picture](_includes/plot_dfHTW.png)
     
 ```python
 import plotly.graph_objects as go
@@ -504,20 +504,20 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 * **Treatment 1**
 ![picture](_includes/T1.png)
 * **Treatment 1a**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1a.png)
+![picture](_includes/T1a.png)
 * **Treatment 1b**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1b.png)
+![picture](_includes/T1b.png)
 * **Treatment 1c**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1c.png)
+![picture](_includes/T1c.png)
     
 * **Treatment 2**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2.png)
+![picture](_includes/T2.png)
 * **Treatment 2a**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2a.png)
+![picture](_includes/T2a.png)
 * **Treatment 2b**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2b.png)
+![picture](_includes/T2b.png)
 * **Treatment 2c**
-![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2c.png)
+![picture](_includes/T2c.png)
 
 #### Answer to investigation questions given the results above:
 
