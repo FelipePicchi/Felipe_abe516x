@@ -201,6 +201,7 @@ The nature of my data requires a good way of graphically visualizing it in order
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Title = input string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
     * Plot output example:
+    
     **When all the sensors/features are selected:**
     ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_df%20with%20all%20features.png)
     **When only one sensors/feature is selected:**
@@ -211,6 +212,7 @@ The nature of my data requires a good way of graphically visualizing it in order
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2", etc)
     * Plot output example:
+    
     ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/plot_dfHTW.png)
     
 ```python
