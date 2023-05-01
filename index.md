@@ -80,6 +80,21 @@ I defined a function that performs a series of operations with my input raw data
     * Month = string specifying the Month and year of interest (i.e., "November 2022")
     * RSP = Resampling period of interest, which is the input for pd.resample function where RSP is the offset string or object representing target conversion (i.e., "1min", "1H", "1W", "1M"...)
 
+# Thrid Concept/Method: Data Visualization
+
+The nature of my data requires a good way of graphicaly visualizing it in order to be able to manualy identify patterns and trends that I should keep in mind before running any smoothing techniques, or any machine and deep learning models. Before taking this class, I was doing all the data wrangling a via Jupyter Notebook but all the graphs were done using Excel - since it was the graphing tool I was more confortable using. But after this semester I became way more confortable making high-end plots using python libraries such as seaborn and plotly. I chose to use Plotly as my main graphical library in this project because it is an interactive visualization tool that allows me to zoom in and out, pan, take snapshots, and select specific plotting features, which helps me explore and easily discover patterns in my dataset.  In this portion I defined two functions for graphical data visualization. One allows me to plot a single graph that traces all the features from my data frame, while the other plots the same data but separtes it by sensor type and placement (rooms placement given farm orientation) at the farm. 
+
+### Function description:
+
+* **plot_df(df, Title)**: This function outputs a single interactive Plotly graph with all the features within the data frame.
+    * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
+    * Title = input string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
+* **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
+    * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
+    * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
+
+
+
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](./another-page.html).
