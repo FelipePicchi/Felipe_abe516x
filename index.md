@@ -471,14 +471,14 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 
 | Resampling window | Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) |
 |:----------------- |:---------------|:------------------|:-------------------------------------------------|
-|20 minutes         | West Room Temp | None              | XXXX                                             |
-|20 minutes         | West Room Temp | Moving Average    | XXXX                                             |
-|20 minutes         | West Room Temp | Savitzky-Golay    | XXXX                                             |
-|20 minutes         | West Room Temp | Wavelets          | XXXX                                             |
-|1 day              | West Room Temp | None              | XXXX                                             |
-|1 day              | West Room Temp | Moving Average    | XXXX                                             |
-|1 day              | West Room Temp | Savitzky-Golay    | XXXX                                             |
-|1 day              | West Room Temp | Wavelets          | XXXX                                             |
+|20 minutes         | West Room Temp | None              | 10.01                                            |
+|20 minutes         | West Room Temp | Moving Average    | 9.94                                             |
+|20 minutes         | West Room Temp | Savitzky-Golay    | 10.01                                            |
+|20 minutes         | West Room Temp | Wavelets          | 10.01                                            |
+|1 day              | West Room Temp | None              | 15.57                                            |
+|1 day              | West Room Temp | Moving Average    | 15.57                                            |
+|1 day              | West Room Temp | Savitzky-Golay    | 15.57                                            |
+|1 day              | West Room Temp | Wavelets          | 15.57                                            |
 
 
 
