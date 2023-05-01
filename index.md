@@ -82,6 +82,114 @@ I defined a function that performs a series of operations with my input raw data
     * Month = string specifying the Month and year of interest (i.e., "November 2022")
     * RSP = Resampling period of interest, which is the input for pd.resample function where RSP is the offset string or object representing target conversion (i.e., "1min", "1H", "1W", "1M"...)
 
+```python
+def create_df(Farm, Month, RSP):
+    
+    data = pd.read_csv(Farm + " " + Month + ".csv")
+
+    if Farm == "Farm1" or Farm == "Farm2" or Farm == "Farm3" or Farm == "Farm4" or Farm == "Farm5": 
+      DOI1 = data[(data.SensorName == farms[Farm]["Name_H1"]) & (data.SensorType == farms[Farm]["Type_H1"])]
+      DOI2 = data[(data.SensorName == farms[Farm]["Name_T1"]) & (data.SensorType == farms[Farm]["Type_T1"])]
+      DOI3 = data[(data.SensorName == farms[Farm]["Name_W1"]) & (data.SensorType == farms[Farm]["Type_W1"])]
+
+      DOI4 = data[(data.SensorName == farms[Farm]["Name_H2"]) & (data.SensorType == farms[Farm]["Type_H2"])]
+      DOI5 = data[(data.SensorName == farms[Farm]["Name_T2"]) & (data.SensorType == farms[Farm]["Type_T2"])]
+      DOI6 = data[(data.SensorName == farms[Farm]["Name_W2"]) & (data.SensorType == farms[Farm]["Type_W2"])]
+
+      DOI7 = data[(data.SensorName ==  farms[Farm]["Name_OFCT"]) & (data.SensorType == farms[Farm]["Type_OFCT"])]
+      DOI8 = data[(data.SensorName ==  farms[Farm]["Name_ODT"]) & (data.SensorType == farms[Farm]["Type_ODT"])]
+
+
+      DOI1['Timestamp'] = pd.to_datetime(DOI1['Timestamp'])
+      DOI1 = DOI1.resample(RSP, on='Timestamp').agg({'Value':'mean'})
+      DOI1.loc[DOI1["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI2['Timestamp'] = pd.to_datetime(DOI2['Timestamp'])
+      DOI2 = DOI2.resample(RSP, on='Timestamp').agg({'Value':'mean'})
+      DOI2.loc[DOI2["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI3['Timestamp'] = pd.to_datetime(DOI3['Timestamp'])
+      DOI3_min = DOI3.resample(RSP, on='Timestamp').agg({'Value':'min'})
+      DOI3_min.loc[DOI3_min["Value"] == 0.0, "Value"] = np.NAN #np.NAN #Removes all 0.0 values and make them NaN
+      DOI3_max = DOI3.resample(RSP, on='Timestamp').agg({'Value':'max'})
+      DOI3_max.loc[DOI3_max["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI4['Timestamp'] = pd.to_datetime(DOI4['Timestamp'])
+      DOI4 = DOI4.resample(RSP, on='Timestamp').agg({'Value':'mean'})
+      DOI4.loc[DOI4["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI5['Timestamp'] = pd.to_datetime(DOI5['Timestamp'])
+      DOI5 = DOI5.resample(RSP, on='Timestamp').agg({'Value':'mean'})
+      DOI5.loc[DOI5["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI6['Timestamp'] = pd.to_datetime(DOI6['Timestamp'])
+      DOI6_min = DOI6.resample(RSP, on='Timestamp').agg({'Value':'min'})
+      DOI6_min.loc[DOI6_min["Value"] == 0.0, "Value"] = np.NAN
+      DOI6_max = DOI6.resample(RSP, on='Timestamp').agg({'Value':'max'})
+      DOI6_max.loc[DOI6_max["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI7['Timestamp'] = pd.to_datetime(DOI7['Timestamp'])
+      DOI7 = DOI7.resample(RSP, on='Timestamp').agg({'Value':'mean'})
+      DOI7.loc[DOI7["Value"] == 0.0, "Value"] = np.NAN
+
+      DOI8['Timestamp'] = pd.to_datetime(DOI8['Timestamp'])
+      DOI8 = DOI8.resample(RSP, on='Timestamp').agg({'Value':'mean'})
+      DOI8.loc[DOI8["Value"] == 0.0, "Value"] = np.NAN
+
+
+      df1 = pd.merge(DOI1, DOI2, on="Timestamp", suffixes=(" DOI1", " DOI2"))
+      df2 = pd.merge(DOI3_min, DOI3_max, on="Timestamp", suffixes=(" Min DOI3", " Max DOI3"))
+      df3 = pd.merge(DOI4, DOI5, on="Timestamp", suffixes=(" DOI4", " DOI5"))
+      df4 = pd.merge(DOI6_min, DOI6_max, on="Timestamp", suffixes=(" Min DOI6", " Max DOI6"))
+      df5 = pd.merge(DOI7, DOI8, on="Timestamp", suffixes=(" DOI7", " DOI8"))
+
+      df12 = pd.merge(df1, df2, on="Timestamp")
+      df34 = pd.merge(df3, df4, on="Timestamp")
+
+      df = pd.merge(df12, df34, on="Timestamp")
+      df = pd.merge(df, df5, on="Timestamp")
+
+      #Linear interpolate missing values that it is not related to water measuremnts
+      df['Value DOI1'].interpolate(method='linear', inplace=True)
+      df['Value DOI2'].interpolate(method='linear', inplace=True)
+      df['Value DOI4'].interpolate(method='linear', inplace=True)
+      df['Value DOI5'].interpolate(method='linear', inplace=True)
+      df['Value DOI7'].interpolate(method='linear', inplace=True)
+      df['Value DOI8'].interpolate(method='linear', inplace=True)
+
+      #Fill min NAN values with previous max
+      df['Value Min DOI3'].fillna(df['Value Max DOI3'].shift(1), inplace=True)
+      df['Value Min DOI6'].fillna(df['Value Max DOI6'].shift(1), inplace=True)
+
+      #Find water consumption by RSP
+      df[farms[Farm]["Name_W1"] + ' Consumption'] = df['Value Max DOI3'] - df['Value Min DOI3']
+      df[farms[Farm]["Name_W2"] + ' Consumption'] = df['Value Max DOI6'] - df['Value Min DOI6']
+
+      #Linear interpolate missing water consumption values
+      df[farms[Farm]["Name_W1"] + ' Consumption'].interpolate(method='linear', inplace=True)
+      df[farms[Farm]["Name_W2"] + ' Consumption'].interpolate(method='linear', inplace=True)
+
+      #Last Step is to Fill missing max and min values by using the interpolated water consumption
+      while df['Value Max DOI3'].isnull().values.any():
+        df['Value Max DOI3'].fillna((df['Value Max DOI3'].shift(1) + df[farms[Farm]["Name_W1"] +  ' Consumption']), inplace=True)
+      while df['Value Min DOI3'].isnull().values.any():
+        df['Value Min DOI3'].fillna((df['Value Max DOI3'] - df[farms[Farm]["Name_W1"] +  ' Consumption']), inplace=True)
+
+      while df['Value Max DOI6'].isnull().values.any():
+        df['Value Max DOI6'].fillna((df['Value Max DOI6'].shift(1) + df[farms[Farm]["Name_W2"] +  ' Consumption']), inplace=True)
+      while df['Value Min DOI6'].isnull().values.any():
+        df['Value Min DOI6'].fillna((df['Value Max DOI6'] - df[farms[Farm]["Name_W2"] +  ' Consumption']), inplace=True)
+
+      df = df.rename(columns={"Value DOI1": farms[Farm]["Name_H1"], "Value DOI2": farms[Farm]["Name_T1"], "Value Min DOI3": "Min " + farms[Farm]["Name_W1"], "Value Max DOI3": "Max " + farms[Farm]["Name_W1"],\
+                              "Value DOI4": farms[Farm]["Name_H2"], "Value DOI5": farms[Farm]["Name_T2"], "Value Min DOI6": "Min " + farms[Farm]["Name_W2"], "Value Max DOI6": "Max " + farms[Farm]["Name_W2"],\
+                              "Value DOI7": farms[Farm]["Name_OFCT"], "Value DOI8": farms[Farm]["Name_ODT"]})
+
+      df = df[[farms[Farm]["Name_H1"], farms[Farm]["Name_T1"], "Min " + farms[Farm]["Name_W1"], "Max " + farms[Farm]["Name_W1"], farms[Farm]["Name_W1"] + " Consumption",\
+               farms[Farm]["Name_H2"], farms[Farm]["Name_T2"], "Min " + farms[Farm]["Name_W2"], "Max " + farms[Farm]["Name_W2"], farms[Farm]["Name_W2"] + " Consumption",\
+               farms[Farm]["Name_OFCT"], farms[Farm]["Name_ODT"]]]
+    
+    return df
+```
 # Thrid Concept/Method: Data Visualization
 
 The nature of my data requires a good way of graphically visualizing it in order to be able to manually identify patterns and trends that I should keep in mind before running any smoothing techniques or any machine and deep learning models. Before taking this class, I was doing all the data wrangling via Jupyter Notebook, but all the graphs were done using Excel - since it was the graphing tool I was more comfortable using. But after this semester, I became way more comfortable making high-end plots using Python libraries such as Seaborn and Plotly. I chose to use Plotly as my main graphical library in this project because it is an interactive visualization tool that allows me to zoom in and out, pan, take snapshots, and select specific plotting features, which helps me explore and easily discover patterns in my dataset. In this portion, I defined two functions for graphical data visualization. One allows me to plot a single graph that traces all the features from my data frame, while the other plots the same data but separate it by sensor type and placement (room placement given farm orientation) at the farm. 
