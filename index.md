@@ -206,6 +206,63 @@ The nature of my data requires a good way of graphically visualizing it in order
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
 
+```python
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+def plot_df(df, Title):
+    fig = go.Figure()
+    
+    # Add a trace for each column in the DataFrame
+    for col in df.columns:
+        fig.add_trace(go.Scatter(x=df.index, y=df[col], mode='lines', name=col))
+        
+    # Set the title and axis labels
+    fig.update_layout(title=Title, xaxis_title='Timestamp', yaxis_title='Value')
+    
+    # Show the plot
+    fig.show()
+
+def plot_dfHTW(df, Farm):
+    
+    fig = make_subplots(rows=3, cols=1, subplot_titles=("Humidity", "Temperature", "Water"))
+
+    # Create traces for room 1 values
+    H1_trace = go.Scatter(x=df.index, y=df[farms[Farm]["Name_H1"]], name=farms[Farm]["Name_H1"])
+    T1_trace = go.Scatter(x=df.index, y=df[farms[Farm]["Name_T1"]], name=farms[Farm]["Name_T1"])
+    W1_trace = go.Scatter(x=df.index, y=df[(farms[Farm]["Name_W1"]  + " Consumption")], name=(farms[Farm]["Name_W1"]  + " Consumption"))
+    W1_min_trace = go.Scatter(x=df.index, y=df[("Min " + farms[Farm]["Name_W1"])], name=("Min " + farms[Farm]["Name_W1"]))
+    W1_max_trace = go.Scatter(x=df.index, y=df[("Max " + farms[Farm]["Name_W1"])], name=("Max " + farms[Farm]["Name_W1"]))
+
+    # Create traces for room 2 values
+    H2_trace = go.Scatter(x=df.index, y=df[farms[Farm]["Name_H2"]], name="West Room Humidity")
+    T2_trace = go.Scatter(x=df.index, y=df[farms[Farm]["Name_T2"]], name="West Room Temp")
+    W2_trace = go.Scatter(x=df.index, y=df[(farms[Farm]["Name_W2"]  + " Consumption")], name=(farms[Farm]["Name_W2"]  + " Consumption"))
+    W2_min_trace = go.Scatter(x=df.index, y=df[("Min " + farms[Farm]["Name_W2"])], name=("Min " + farms[Farm]["Name_W2"]))
+    W2_max_trace = go.Scatter(x=df.index, y=df[("Max " + farms[Farm]["Name_W2"])], name=("Max " + farms[Farm]["Name_W2"]))
+
+    # Add traces to subplots based on their column type
+    fig.add_trace(H1_trace, row=1, col=1)
+    fig.add_trace(H2_trace, row=1, col=1)
+    fig.add_trace(T1_trace, row=2, col=1)
+    fig.add_trace(T2_trace, row=2, col=1)
+    fig.add_trace(W1_trace, row=3, col=1)
+    fig.add_trace(W2_trace, row=3, col=1)
+    fig.add_trace(W1_min_trace, row=3, col=1)
+    fig.add_trace(W2_min_trace, row=3, col=1)
+    fig.add_trace(W1_max_trace, row=3, col=1)
+    fig.add_trace(W2_max_trace, row=3, col=1)
+
+    # Update the layout to allow for toggling between room 1, room 2, or both values in each graph
+    fig.update_layout(updatemenus=[dict(active=0, buttons=list([
+        dict(label=farms[Farm]["Orientation1"], method="update", args=[{"visible": [True, False, True, False, True, False, True, False]}, {"title": f'{Farm} {farms[Farm]["Orientation1"] } Values'}]),
+        dict(label=farms[Farm]["Orientation2"], method="update", args=[{"visible": [False, True, False, True, False, True, False, True]}, {"title": f'{Farm} {farms[Farm]["Orientation1"] } Values'}]),
+        dict(label="Both Rooms", method="update", args=[{"visible": [True, True, True, True, True, True, True, True]}, {"title": f'{Farm} {farms[Farm]["Orientation1"]} and {farms[Farm]["Orientation2"]} Values'}])
+    ]))])
+
+    fig.show()
+```
+
 # Fourth Concept/Method: Data Smoothing and ML Model
 
 ## Smoothing Techniques
