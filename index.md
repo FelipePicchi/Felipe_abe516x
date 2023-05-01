@@ -459,6 +459,42 @@ def my_isolationForest(Title, Data, variable, contaminationLevel, plot_value_cou
     return f'{percent_anomalies} is the percentage of anomalies oberved in this data'
 ```
 
+# Fifth Concept/Method: Ability to make my analysis reproducible
+
+First of all, replicability is one of my main concerns since the data wrangling portion, given that I have data files for five different farms. And although they are connected to the same type of gateway, they have slightly different sensor naming and placement at the farms. That is why I made a dictionary that all of my functions can reference, given the farm name. By making my code parametric to the specific farm I am working with, I can ensure that it will easily adapt to any differences in sensor naming or farm orientation. Implementing this practice allowed me to have only one Jupyter notebook that can work with any farm instead of having a notebook specific to each farm.
+
+Secondly, I opted to create a variety of functions instead of having to do certain repetitive tasks over and over when trying to experiment with my data. This allows not only me to perform a certain analysis quickly but also any person to simply read the function documentation and be able to perform the same analysis and replicate my findings.
+
+To test how easy it is to replicate and experiment with my functions, I first created resampled data frames using **create_df()** at 20 minutes, 1 hour, 12 hours, and 1-day resampling windows and plotted these using both **plot_df()** and **plot_dfHTW()**. These graphs aided me in observing interesting patterns that I would like to study further. Secondly, in the interest of showing the capabilities of my smoothing and ML functions, I only applied the three smoothing treatments (**my_movingAvg()**, **my_savgolFilter**, **my_waveletFilter**) and the anomaly detection (**my_isolationForest()**) to one sensor (Farm1: "*West Room Temp*") at two different resampling windows (20 minutes and 1 day). The table bellow depicts the results obtained:
+
+#### Farm 1 analysis
+
+| Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) |
+|:---------------|:------------------|:-------------------------------------------------|
+| West Room Temp | None              | XXXX                                             |
+| West Room Temp | Moving Average    | XXXX                                             |
+| West Room Temp | Savitzky-Golay    | XXXX                                             |
+| West Room Temp | Wavelets          | XXXX                                             |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
