@@ -475,10 +475,10 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 |20 minutes         | West Room Temp | Moving Average    | XXXX                                             |
 |20 minutes         | West Room Temp | Savitzky-Golay    | XXXX                                             |
 |20 minutes         | West Room Temp | Wavelets          | XXXX                                             |
-|1 hour             | West Room Temp | None              | XXXX                                             |
-|1 hour             | West Room Temp | Moving Average    | XXXX                                             |
-|1 hour             | West Room Temp | Savitzky-Golay    | XXXX                                             |
-|1 hour             | West Room Temp | Wavelets          | XXXX                                             |
+|1 day              | West Room Temp | None              | XXXX                                             |
+|1 day              | West Room Temp | Moving Average    | XXXX                                             |
+|1 day              | West Room Temp | Savitzky-Golay    | XXXX                                             |
+|1 day              | West Room Temp | Wavelets          | XXXX                                             |
 
 
 
