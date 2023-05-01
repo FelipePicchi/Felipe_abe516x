@@ -27,8 +27,11 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 # First Concept/Method: API
 
 My data can be obtained manually from the sponsoring company's website or through an API. By default, all the farm's data are stored for a maximum of fifteen days before being deleted. Therefore, before implementing the API with the knowledge gained in this course, I had to keep good track of when I had to manually download those files. For almost a year and a half, I have failed twice and missed the download window for a day or two, which is not a big deal when looking at the vast amount of data I have, but this could be better by having no missing days! 
+
 With the implementation of a script that can retrieve data from the API, I can forget about downloading the data myself and setting calendar reminders and alarms. In class, I wrote a functional Jupyther Notebook that can call, authenticate and download the CSV files of multiple gateways (Famrs) I have access. Even though I had a functional script on my hands, making those API calls was not completely autonomous since I had to press run on the notebook.
+
 From my application's API, I can perform two different requests. One that returns me the status (minimum and maximum readings) of every sensor connected to that gateway over the last 15-minute period or the other option that returns the status of every sensor over the last 24-hour window.
+
 My goal was to schedule when the script would run. I researched the best methods to schedule a Python script and found multiple ways to do it using Microsoft Azure, Windows Task Scheduler, JupyterLab, etc. My initial idea was to keep two laptops executing the script every 24 hours at midnight using Windows Task Scheduler. It worked fine for the first few days, but I started noticing that it was not making the calls or the files were not being saved properly. My second option was to have JupytherLab running on those computers, and I had no issues with it both during setup and execution over the last weeks.
 
 ### How to use Jupyther Scheduler:
