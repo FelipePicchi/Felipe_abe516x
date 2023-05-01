@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-# Introduction 2
+# Introduction 13
 
 On this webpage, you can find an elaborate explanation of my [ABE 516X](https://github.com/isu-abe/516x) (Data Science and Analytics for Agricultural and Biosystem Engineers) final project. During the course, I learned about research techniques linked with data science ideas and their practical use. The course involved conducting analyses and research on themes connected to Agriculture and Biosystem Engineering and Technology, methods for creating and preserving data analysis pipelines that can be replicated, the best approaches for displaying data visually and presenting data-driven results to diverse audiences, and principles of data ethics and integrity.
 
@@ -206,9 +206,9 @@ The nature of my data requires a good way of graphically visualizing it in order
     * Plot output example:
     
         **When all the sensors/features are selected:**
-    ![picture1](_includes/plot_df%20with%20all%20features.png)
+    **HERE**
         **When only one sensors/feature is selected:**
-    ![picture2](_includes/plot_df%20with%20only%20one%20feature.png)
+    **HERE**
    
 * **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
 
@@ -216,7 +216,7 @@ The nature of my data requires a good way of graphically visualizing it in order
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2", etc)
     * Plot output example:
     
-    ![picture3](_includes/plot_dfHTW.png)
+    **HERE**
     
 ```python
 import plotly.graph_objects as go
@@ -502,22 +502,22 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 #### Follow all the eight outputed graphs from the analysis above
 
 * **Treatment 1**
-![picture4](_includes/T1.png)
+**HERE**
 * **Treatment 1a**
-![picture5](_includes/T1a.png)
+**HERE**
 * **Treatment 1b**
-![picture6](_includes/T1b.png)
+**HERE**
 * **Treatment 1c**
-![picture7](_includes/T1c.png)
+**HERE**
     
 * **Treatment 2**
-![picture8](_includes/T2.png)
+**HERE**
 * **Treatment 2a**
-![picture9](_includes/T2a.png)
+**HERE**
 * **Treatment 2b**
-![picture10](_includes/T2b.png)
+**HERE**
 * **Treatment 2c**
-![picture11](_includes/T2c.png)
+**HERE**
 
 #### Answer to investigation questions given the results above:
 
