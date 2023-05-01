@@ -78,9 +78,9 @@ I defined a function that performs a series of operations with my input raw data
 
 * **create_df(Farm, Month, RSP)**: This function creates a data frame based on the raw data files, resample it at the desired resampling period, uses linear interpolation to fill in missing values, calculates the water consumption at that period, and outputs a data frame arranged in optimal formatting to be used in future steps of my research.
 
-    * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
+    * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2", etc)
     * Month = string specifying the Month and year of interest (i.e., "November 2022")
-    * RSP = Resampling period of interest, which is the input for pd.resample function where RSP is the offset string or object representing target conversion (i.e., "1min", "1H", "1W", "1M"...)
+    * RSP = Resampling period of interest, which is the input for pd.resample function where RSP is the offset string or object representing target conversion (i.e., "1min", "1H", "1W", "1M", etc)
 
 ```python
 def create_df(Farm, Month, RSP):
@@ -204,7 +204,7 @@ The nature of my data requires a good way of graphically visualizing it in order
 * **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
 
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
-    * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
+    * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2", etc)
 
 ```python
 import plotly.graph_objects as go
@@ -279,7 +279,7 @@ Smoothing using moving average is the first of three smoothing techniques I expl
 
     * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
     * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
-    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp", etc)
     * window_size = int, timedelta, str, offset, or BaseIndexer subclass. Size of the moving window: If an integer, the fixed number of observations used for each window. If a timedelta, str, or offset, the time period of each window. Each window will be a variable sized based on the observations included in the time-period. This is only valid for datetimelike indexes
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
@@ -321,7 +321,7 @@ Smoothing using [Savitzky-Golay](https://docs.scipy.org/doc/scipy/reference/gene
 
     * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
     * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
-    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp", etc)
     * window_size = integer with the length of the filter window (i.e., the number of coefficients). If mode is ‘interp’, window_length must be less than or equal to the size of the variable input
     * poly_order = integer representing the order of the polynomial used to fit the samples. poly_order must be less than window_length
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
@@ -365,10 +365,11 @@ Smoothing using [Wavelet Transform](https://pywavelets.readthedocs.io/en/0.2.2/i
 * **my_waveletFilter(Title, Data, variable, wavelet, level, output_plot=False)**:
     * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
     * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
-    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
-    * wavelet = string wavelet to use in the transform (i.e., "db1", "haar", "bior"...)
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp", etc)
+    * wavelet = string wavelet to use in the transform (i.e., "db1", "haar", "bior", etc)
     * level = integer representing the number of decomposition steps to perform
     * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
+    * *Note*: Aside from the input parameters in this function, it is advised to experiment with other wavedec and threshold parameters (i.e., model, value, etc)
 
 ```python
 import pywt
@@ -402,13 +403,61 @@ def my_waveletFilter(Title, Data, variable, wavelet, level, output_plot=False):
     return smoothed_df
 ```
 
+### Machine Learning technique for outlier/anomaly detection: Isolation Forest
 
+Isolation Forest is my choice of Machine Learning technique for outlier/anomaly detection in this project. It works by isolating observations that are abnormal or somewhat different from the majority of the data. Unlike other ML techniques for outlier detection, it achieves this by constructing random decision trees and partitioning the data points into increasingly smaller and more isolated subsets - it identifies anomalies as those data points that require fewer splits to be isolated from the rest of the data. Isolation Forest has the ability to handle high-dimensional data and has an advantageous computational ability.
 
+#### Function description:
 
+* **my_isolationForest(Title, Data, variable, contaminationLevel, plot_value_counts=True)**: This function will produce a Plotly graph with tracing for the variable of interest with abnormalities marked in red. It will also output a percentage of anomalies detected given the total number of points in out data, and it is also possible to plot a bar graph depicting the number of points with and without anomalies.
 
+    * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min moving Avg detection")
+    * Data = input desired data frame to have a feature smoothed (i.e., "WestRoom_Far1_1day_movingAvg")
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity smoothed", "Nort Room Temp"...)
+    * contaminationLevel = ‘auto’ or float, default=’auto’. The amount of contamination of the data set, i.e. the proportion of outliers in the data set. Used when fitting to define the threshold on the scores of the samples (i.e, 0.05, 0.15)
+    * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
+```python
+from sklearn.ensemble import IsolationForest
 
+def my_isolationForest(Title, Data, variable, contaminationLevel, plot_value_counts=True):
+    
+    data = Data[[variable]]
+    model = IsolationForest(contamination=contaminationLevel)
+    model.fit(data)
+    data['anomaly'] = model.predict(data)
+    
+    # Calculate the percentage of anomalies
+    percent_anomalies = round((sum(data['anomaly'] == -1) / len(data)) * 100, 2)
+    
+    # Create subplots for the anomaly plot and optional value counts bar chart
+    fig = make_subplots(rows=1 + plot_value_counts, cols=1, subplot_titles=('Anomaly Detection', 'Anomaly Observation'))
 
+    # Anomaly detection plot
+    normal_trace = go.Scatter(x=data.index, y=data[variable], mode='lines', name='Normal')
+    fig.add_trace(normal_trace, row=1, col=1)
+
+    # Select anomalies only
+    anomalies = data.loc[data['anomaly'] == -1, [variable]]
+
+    anomaly_trace = go.Scatter(x=anomalies.index, y=anomalies[variable], mode='markers', name='Anomaly', 
+                               marker=dict(color='red', size=8, line=dict(width=1, color='black')))
+    fig.add_trace(anomaly_trace, row=1, col=1)
+
+    fig.update_xaxes(title_text='Date', row=1, col=1)
+    fig.update_yaxes(title_text=variable, row=1, col=1)
+
+    if plot_value_counts:
+        # Anomaly value counts bar chart
+        value_counts_trace = go.Bar(x=['Not an Anomaly', 'Anomaly'], y=data['anomaly'].value_counts().values, name='Data Points')
+        fig.add_trace(value_counts_trace, row=2, col=1)
+        fig.update_layout(title= f'{Title} Isolation Forest Anomaly Detection', height=800, width=1000)
+    else:
+        fig.update_layout(title= f'{Title} Isolation Forest Anomaly Detection', height=500, width=1000)
+
+    fig.show()
+    return f'{percent_anomalies} is the percentage of anomalies oberved in this data'
+```
 
 
 
