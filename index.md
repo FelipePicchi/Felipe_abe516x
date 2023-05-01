@@ -482,8 +482,7 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 
 
 
-_includes/
-    Plot_df(Farm1_20min).html
+{% include Plot_df(Farm1_20min).html %}
 
 
 
