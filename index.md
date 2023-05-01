@@ -220,6 +220,7 @@ The nature of my data requires a good way of graphically visualizing it in order
     
 ```python
 import plotly.graph_objects as go
+import plotly.offline as pyo
 from plotly.subplots import make_subplots
 
 def plot_df(df, Title):
@@ -233,6 +234,7 @@ def plot_df(df, Title):
     fig.update_layout(title=Title, xaxis_title='Timestamp', yaxis_title='Value')
     
     # Show the plot
+    pyo.plot(fig, filename='output.html')
     fig.show()
 
 def plot_dfHTW(df, Farm):
@@ -272,6 +274,7 @@ def plot_dfHTW(df, Farm):
         dict(label="Both Rooms", method="update", args=[{"visible": [True, True, True, True, True, True, True, True]}, {"title": f'{Farm} {farms[Farm]["Orientation1"]} and {farms[Farm]["Orientation2"]} Values'}])
     ]))])
 
+    pyo.plot(fig, filename='output.html')
     fig.show()
 ```
 
@@ -315,6 +318,7 @@ def my_movingAvg(Title, Data, variable, window_size, output_plot=False):
 
     # optionally output the Plotly figure
     if output_plot:
+        pyo.plot(fig, filename='output.html')
         fig.show()
 
     smoothed_df = df.copy()
@@ -361,6 +365,7 @@ def my_savgolFilter(Title, Data, variable, window_size, poly_order, output_plot=
 
     # optionally output the Plotly figure
     if output_plot:
+        pyo.plot(fig, filename='output.html')
         fig.show()
 
     smoothed_df = df.copy()
@@ -409,6 +414,7 @@ def my_waveletFilter(Title, Data, variable, wavelet, level, output_plot=False):
 
     # optionally output the Plotly figure
     if output_plot:
+        pyo.plot(fig, filename='output.html')
         fig.show()
 
     smoothed_df = df.copy()
@@ -468,6 +474,7 @@ def my_isolationForest(Title, Data, variable, contaminationLevel, plot_value_cou
         fig.update_layout(title= f'{Title} Isolation Forest Anomaly Detection', height=500, width=1000)
 
     fig.show()
+    pyo.plot(fig, filename='output.html')
     return f'{percent_anomalies} is the percentage of anomalies oberved in this data'
 ```
 
