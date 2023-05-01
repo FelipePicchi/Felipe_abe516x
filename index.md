@@ -1,7 +1,10 @@
 ---
+# FELIPE
 layout: default
 ---
-# Introduction 13
+
+
+# Introduction 
 
 On this webpage, you can find an elaborate explanation of my [ABE 516X](https://github.com/isu-abe/516x) (Data Science and Analytics for Agricultural and Biosystem Engineers) final project. During the course, I learned about research techniques linked with data science ideas and their practical use. The course involved conducting analyses and research on themes connected to Agriculture and Biosystem Engineering and Technology, methods for creating and preserving data analysis pipelines that can be replicated, the best approaches for displaying data visually and presenting data-driven results to diverse audiences, and principles of data ethics and integrity.
 
