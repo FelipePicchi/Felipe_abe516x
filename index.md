@@ -482,12 +482,8 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 
 
 
-
-<body>
-    <center><iframe src="./_includes/Plot_df(Farm1_20min).html" height="800" width="1200" frameBorder="0"></center>
-    </body>
-
-
+_includes/
+    Plot_df(Farm1_20min).html
 
 
 
