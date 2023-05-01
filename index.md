@@ -23,6 +23,7 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 5.  Ability to make my analysis reproducible
 
 **Disclaimer 1:** The notebook was not embedded in this website because it contains confidential information. Access will be provided for the instructor in a separate platform.
+
 **Disclaimer 2:** No interactive graphs were embedded in this website because it contains confidential information. Static snapshots were used as a replacement.
 
 * * *
