@@ -502,22 +502,22 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 #### Follow all the eight outputed graphs from the analysis above
 
 * **Treatment 1**
-    ![picture](_includes/T1.png)
+![picture](_includes/T1.png)
 * **Treatment 1a**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1a.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1a.png)
 * **Treatment 1b**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1b.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1b.png)
 * **Treatment 1c**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1c.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1c.png)
     
 * **Treatment 2**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2.png)
 * **Treatment 2a**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2a.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2a.png)
 * **Treatment 2b**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2b.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2b.png)
 * **Treatment 2c**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2c.png)
+![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2c.png)
 
 #### Answer to investigation questions given the results above:
 
