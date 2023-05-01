@@ -519,8 +519,19 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 * **Treatment 2c**
     ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T2c.png)
 
+#### Answer to investigation questions given the results above:
 
+* Is there a significant difference in outlier/anomaly detection given different smoothing techniques and running it in the actual data?
 
+    I was not able to come to a definitive conclusion on this question. It is possible to notice that in terms of the percentage of anomalies detected at the 20-minute resampling window, the actual data, Savitzky-Golay, and Wavelets had the same 10.01% of anomaly detected while the Moving average had a 9.94%. In the case of the 1 day resampling window, all the smoothing methods had the same result as the actual data - a 15.57% anomaly was detected.
+    Although the percentage of anomalies detected was the same in most cases, every method spotted anomalies in different or somewhat close locations of the time-series data. When observing the 20 minutes graphs closely with Plotly, I was able to notice that Savitzky-Golay was the method that produced a result closer to what I was looking for in terms of identifying rapid changes in trend, while the other methods did not perform as good since they spotted multiple points along a single event - instead of only the most extreme event. For the 1 day graphs, we can observe the same identification pattern, in which Savitzky-Golay performed better in identifying positive and negative anomalies.
+    
+* What is/are the best smoothing technique to apply to my data to reduce noise and identify trends in time-series data?
+   
+    I found that Savitzky-Golay was the method that performed better. But further fine-tuning of parameters is necessary to investigate its capabilities. Moreover, in the future, I will be testing and experimenting more with Wavelets since it has a lot of parameters and features I was unable to explore - and I believe it is capable of performing as well as the Savitzky-Golay. I might not move forward on using Moving Average in my research project since its performance was comparable to the actual data, and it also introduces a lag to the time series that might be detrimental to my analysis.
+    
+    
+    
 ```
 Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
 ```
