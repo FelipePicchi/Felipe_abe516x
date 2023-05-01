@@ -19,7 +19,7 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 1.  The use of an API to collect data from the cloud
 2.  Data wrangling with the implementation of resampling statistics (Fill/Predicting missing data points)
 3.  Employment of Python library that aids in data visualization and exploration
-4.  Use of an unsupervised machine learning model for outlier/anomaly detection
+4.  Use of smoothing techniques and an unsupervised machine learning model for outlier/anomaly detection
 5.  Ability to make my analysis reproducible
 
 * * *
@@ -84,7 +84,7 @@ I defined a function that performs a series of operations with my input raw data
 
 # Thrid Concept/Method: Data Visualization
 
-The nature of my data requires a good way of graphicaly visualizing it in order to be able to manualy identify patterns and trends that I should keep in mind before running any smoothing techniques, or any machine and deep learning models. Before taking this class, I was doing all the data wrangling a via Jupyter Notebook but all the graphs were done using Excel - since it was the graphing tool I was more confortable using. But after this semester I became way more confortable making high-end plots using python libraries such as seaborn and plotly. I chose to use Plotly as my main graphical library in this project because it is an interactive visualization tool that allows me to zoom in and out, pan, take snapshots, and select specific plotting features, which helps me explore and easily discover patterns in my dataset.  In this portion I defined two functions for graphical data visualization. One allows me to plot a single graph that traces all the features from my data frame, while the other plots the same data but separtes it by sensor type and placement (rooms placement given farm orientation) at the farm. 
+The nature of my data requires a good way of graphically visualizing it in order to be able to manually identify patterns and trends that I should keep in mind before running any smoothing techniques or any machine and deep learning models. Before taking this class, I was doing all the data wrangling via Jupyter Notebook, but all the graphs were done using Excel - since it was the graphing tool I was more comfortable using. But after this semester, I became way more comfortable making high-end plots using Python libraries such as Seaborn and Plotly. I chose to use Plotly as my main graphical library in this project because it is an interactive visualization tool that allows me to zoom in and out, pan, take snapshots, and select specific plotting features, which helps me explore and easily discover patterns in my dataset. In this portion, I defined two functions for graphical data visualization. One allows me to plot a single graph that traces all the features from my data frame, while the other plots the same data but separate it by sensor type and placement (room placement given farm orientation) at the farm. 
 
 ### Function description:
 
@@ -97,6 +97,37 @@ The nature of my data requires a good way of graphicaly visualizing it in order 
 
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
+
+# Fourth Concept/Method: Data Smoothing and ML Model
+
+## Smoothing Techniques
+
+There are several data smoothing techniques that I could consider applying to our time-series data before running any machine or deep learning model for outlier detection. The choice of smoothing technique will depend on the specific characteristics of my time-series data and the analysis goals. Among various techniques, I chose to test **Moving Average**, **Savitzky-Golay**, and lastly, **Wavelet Transform**. Before researching more about smoothing techniques that could be applied to this project, I was only familiar with Moving Average and Savitzky-Golay. But I came across the method Wavelet Transform - which I am still exploring and experimenting with all the available parameters and modes.
+
+### Smoothing with Moving Average
+ 
+Smoothing using moving average is the first of three smoothing techniques I explore in this notebook. This is a common technique for reducing noise and identifying trends in time-series data. It involves taking a sliding window of a specified length, computing the average value within that window, and repeating this process for each subsequent data point in the time series, producing a new smoothed time series that highlights long-term trends while minimizing the impact of short-term noise. However, it introduces a lag -of the same size as the sliding window- in the resulting time series since each point of the smoothed value is based on the prior data.
+
+#### Function description:
+
+* **my_movingAvg(Title, Data, variable, window_size, output_plot=False)**:
+
+    * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
+    * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
+    * window_size = int, timedelta, str, offset, or BaseIndexer subclass. Size of the moving window: If an integer, the fixed number of observations used for each window. If a timedelta, str, or offset, the time period of each window. Each window will be a variable sized based on the observations included in the time-period. This is only valid for datetimelike indexes.
+    * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
