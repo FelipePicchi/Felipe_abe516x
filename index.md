@@ -469,17 +469,16 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 
 #### Farm 1 Analysis
 
-| Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) |
-|:---------------|:------------------|:-------------------------------------------------|
-| West Room Temp | None              | XXXX                                             |
-| West Room Temp | Moving Average    | XXXX                                             |
-| West Room Temp | Savitzky-Golay    | XXXX                                             |
-| West Room Temp | Wavelets          | XXXX                                             |
-|:---------------|:------------------|:-------------------------------------------------|
-| West Room Temp | None              | XXXX                                             |
-| West Room Temp | Moving Average    | XXXX                                             |
-| West Room Temp | Savitzky-Golay    | XXXX                                             |
-| West Room Temp | Wavelets          | XXXX                                             |
+| Resampling window | Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) |
+|:----------------- |:---------------|:------------------|:-------------------------------------------------|
+|                   | West Room Temp | None              | XXXX                                             |
+|20 minutes         | West Room Temp | Moving Average    | XXXX                                             |
+|                   | West Room Temp | Savitzky-Golay    | XXXX                                             |
+|                   | West Room Temp | Wavelets          | XXXX                                             |
+|                   | West Room Temp | None              | XXXX                                             |
+| 1 hour            | West Room Temp | Moving Average    | XXXX                                             |
+|                   | West Room Temp | Savitzky-Golay    | XXXX                                             |
+|                   | West Room Temp | Wavelets          | XXXX                                             |
 
 
 
