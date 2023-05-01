@@ -17,10 +17,13 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 ## What five research methods and concepts learned in this class will be applied in this project?
 
 1.  The use of an API to collect data from the cloud
-2.  Implementation of resampling statistics (Fill/Predicting missing data points)
+2.  Data wrangling with the implementation of resampling statistics (Fill/Predicting missing data points)
 3.  Employment of Python library that aids in data visualization and exploration
 4.  Use of an unsupervised machine learning model for outlier/anomaly detection
 5.  Ability to make my analysis reproducible
+
+# First Concept/Method: API
+
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
