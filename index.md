@@ -502,7 +502,7 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 #### Follow all the eight outputed graphs from the analysis above
 
 * **Treatment 1**
-    ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1.png)
+    ![picture](_includes/T1.png)
 * **Treatment 1a**
     ![picture](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1a.png)
 * **Treatment 1b**
