@@ -106,7 +106,7 @@ There are several data smoothing techniques that I could consider applying to ou
 
 ### Smoothing with Moving Average
  
-Smoothing using moving average is the first of three smoothing techniques I explore in this notebook. This is a common technique for reducing noise and identifying trends in time-series data. It involves taking a sliding window of a specified length, computing the average value within that window, and repeating this process for each subsequent data point in the time series, producing a new smoothed time series that highlights long-term trends while minimizing the impact of short-term noise. However, it introduces a lag -of the same size as the sliding window- in the resulting time series since each point of the smoothed value is based on the prior data.
+Smoothing using moving average is the first of three smoothing techniques I explore in this project. This is a common technique for reducing noise and identifying trends in time-series data. It involves taking a sliding window of a specified length, computing the average value within that window, and repeating this process for each subsequent data point in the time series, producing a new smoothed time series that highlights long-term trends while minimizing the impact of short-term noise. However, it introduces a lag -of the same size as the sliding window- in the resulting time series since each point of the smoothed value is based on the prior data.
 
 #### Function description:
 
@@ -115,15 +115,37 @@ Smoothing using moving average is the first of three smoothing techniques I expl
     * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
     * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
     * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
-    * window_size = int, timedelta, str, offset, or BaseIndexer subclass. Size of the moving window: If an integer, the fixed number of observations used for each window. If a timedelta, str, or offset, the time period of each window. Each window will be a variable sized based on the observations included in the time-period. This is only valid for datetimelike indexes.
-    * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data.
+    * window_size = int, timedelta, str, offset, or BaseIndexer subclass. Size of the moving window: If an integer, the fixed number of observations used for each window. If a timedelta, str, or offset, the time period of each window. Each window will be a variable sized based on the observations included in the time-period. This is only valid for datetimelike indexes
+    * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
+### Smoothing with Savitzky-Golay
 
+Smoothing using [Savitzky-Golay](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html) is the second of three smoothing techniques I explore in this project. This is also used to reduce noise and to extract trends from time-series data. It works by fitting a polynomial function to a sliding window of data points and using the coefficients of that polynomial to estimate the smoothed value at the center of the window. This process is repeated for each data point in the series, resulting in a smoothed time series. Unlike moving average smoothing, Savitzky-Golay smoothing allows for the preservation of high-frequency features in the data while still reducing noise.
 
+#### Function description:
 
+* **my_savgolFilter(Title, Data, variable, window_size, poly_order, output_plot=False)**:
 
+    * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
+    * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
+    * window_size = integer with the length of the filter window (i.e., the number of coefficients). If mode is ‘interp’, window_length must be less than or equal to the size of the variable input
+    * poly_order = integer representing the order of the polynomial used to fit the samples. poly_order must be less than window_length
+    * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
+### Smoothing with Wavelet Transform
 
+Smoothing using [Wavelet Transform](https://pywavelets.readthedocs.io/en/0.2.2/index.html#) is the last smoothing technique I explore in this project. As the previous, this technique is used for reducing noise and identifying trends in time-series data. It works by decomposing the signal into a series of wavelet coefficients at different scales and frequencies specified by the user. By discarding the high-frequency coefficients representing noise or other data fluctuations, the smoothed signal preserves the low-frequency coefficients corresponding to more prevalent trends in the data. Different from the other methods, this is a bit more complex, given the various wavelet [families](https://wavelets.pybytes.com/) I can experiment with.
+
+#### Function description:
+
+* **my_waveletFilter(Title, Data, variable, wavelet, level, output_plot=False)**:
+    * Title = string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
+    * Data = input desired data frame to have a feature smoothed (i.e., "Farm1_20min_SepDec2022")
+    * variable = string representing the farm feature of interest. (i.e., "East Room Humidity", "Nort Room Temp"...)
+    * wavelet = string wavelet to use in the transform (i.e., "db1", "haar", "bior"...)
+    * level = integer representing the number of decomposition steps to perform
+    * output_plot = bool, default False. Whether to include the Plotly graph in the result containig tracing for both actual and smoothed data
 
 
 
