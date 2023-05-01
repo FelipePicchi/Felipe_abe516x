@@ -22,6 +22,9 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 4.  Use of smoothing techniques and an unsupervised machine learning model for outlier/anomaly detection
 5.  Ability to make my analysis reproducible
 
+**Disclaimer 1:** The notebook was not embedded in this website because it contains confidential information. Access will be provided for the instructor in a separate platform.
+**Disclaimer 2:** No interactive graphs were embedded in this website because it contains confidential information. Static snapshots were used as a replacement.
+
 * * *
 
 # First Concept/Method: API
@@ -57,7 +60,6 @@ Remember that Jupyter Scheduler runs Jupyter notebooks in the background, either
 * **job()**: function allows us to call both functions described above for every farm that we desire
      * time.sleep(15) was used as a 15 seconds request buffer since the API does not allow users to make calls in less than 10 seconds in between requests
 
-**Disclaimer:** The notebook was not embedded in this website because it contains confidential information. Access will be provided for the instructor in a separate platform.
 
 # Second Concept/Method: Data Wrangling
 
