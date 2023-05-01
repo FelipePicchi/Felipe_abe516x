@@ -539,6 +539,7 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 * * *
 # Discussion
     
+![pic1](https://github.com/FelipePicchi/Felipe_abe516x/blob/master/_includes/T1.png)
 ```
 Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
 ```
