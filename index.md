@@ -467,9 +467,14 @@ Secondly, I opted to create a variety of functions instead of having to do certa
 
 To test how easy it is to replicate and experiment with my functions, I first created resampled data frames using **create_df()** at 20 minutes, 1 hour, 12 hours, and 1-day resampling windows and plotted these using both **plot_df()** and **plot_dfHTW()**. These graphs aided me in observing interesting patterns that I would like to study further. Secondly, in the interest of showing the capabilities of my smoothing and ML functions, I only applied the three smoothing treatments (**my_movingAvg()**, **my_savgolFilter**, **my_waveletFilter**) and the anomaly detection (**my_isolationForest()**) to one sensor (Farm1: "*West Room Temp*") at two different resampling windows (20 minutes and 1 day). The table bellow depicts the results obtained:
 
-#### Farm 1 analysis
+#### Farm 1 Analysis
 
 | Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) |
+|:---------------|:------------------|:-------------------------------------------------|
+| West Room Temp | None              | XXXX                                             |
+| West Room Temp | Moving Average    | XXXX                                             |
+| West Room Temp | Savitzky-Golay    | XXXX                                             |
+| West Room Temp | Wavelets          | XXXX                                             |
 |:---------------|:------------------|:-------------------------------------------------|
 | West Room Temp | None              | XXXX                                             |
 | West Room Temp | Moving Average    | XXXX                                             |
