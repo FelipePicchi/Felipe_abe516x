@@ -35,7 +35,7 @@ From my application's API, I can perform two different requests. One that return
 My goal was to schedule when the script would run. I researched the best methods to schedule a Python script and found multiple ways to do it using Microsoft Azure, Windows Task Scheduler, JupyterLab, etc. My initial idea was to keep two laptops executing the script every 24 hours at midnight using Windows Task Scheduler. It worked fine for the first few days, but I started noticing that it was not making the calls or the files were not being saved properly. My second option was to have JupytherLab running on those computers, and I had no issues with it both during setup and execution over the last weeks.
 
 ### How to use Jupyther Scheduler:
-1. Install Jupyther Scheduler from the PyPI registry via pip
+1. Install Jupyther Scheduler from the PyPI registry via *pip*
 2. Open JupyterLab (Can be easily found on Anaconda Navigator) 
 3. Select open the Jupyter Notebook that contains the API routine
 4. Click on the blue calendar icon located at the top left corner of your notebook
@@ -59,7 +59,18 @@ Remember that Jupyter Scheduler runs Jupyter notebooks in the background, either
 
 # Second Concept/Method: Data Wrangling
 
+This portion of my analysis considers the formatting of the data (CSV) files manually obtained by downloading it from the cloud - because that's the formatting, I have more data available now. I expect to be able to work with the API files by the end of June 2023 since, at that point, I will have a significant amount of points to conduct an analysis.
 
+Differently from the API CSV outputs that only return the minimums and maximums of each sensor connected to the gateway of 15 minutes or 24-hour periods, the manually downloaded data contains all sensors (Temperature, Humidity, and Water Levels) connected to the gateway to record the parameters simultaneously, but at irregular time intervals. The time intervals range from around 1 minute to more than 10 minutes, and parameters recorded by each sensor may or may not change between consecutive updates (i.e., sparse logging). 
+
+I defined a function that performs a series of operations with my input raw data file and outputs a data frame that is easier to work with. The following are the operations within the function:
+
+1. Identify which farm we are working with
+2. Resamples each farm sensor given a resampling window
+3. Linear interpolates any missing values (Note: Future work needs to be done to account for if only one or two hours of observations were missing, we use linear interpolation to impute the missing observations because we expected no dramatic change in the parameters within a brief period. However, if more than two hours of data are missing during the daytime, we discard the entire day's data because interpolation may be unreliable over long time windows)
+4. Calculates the water consumption rates given the maximum and minimums during that time-series interval
+5. Arranges all the values in an appropriate data frame with correct indexes and formating
+6. Returns a data frame
 
 
 
