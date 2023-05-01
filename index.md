@@ -530,7 +530,8 @@ To test how easy it is to replicate and experiment with my functions, I first cr
    
     I found that Savitzky-Golay was the method that performed better. But further fine-tuning of parameters is necessary to investigate its capabilities. Moreover, in the future, I will be testing and experimenting more with Wavelets since it has a lot of parameters and features I was unable to explore - and I believe it is capable of performing as well as the Savitzky-Golay. I might not move forward on using Moving Average in my research project since its performance was comparable to the actual data, and it also introduces a lag to the time series that might be detrimental to my analysis.
     
-    
+* * *
+# Discussion
     
 ```
 Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
