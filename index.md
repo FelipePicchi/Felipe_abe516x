@@ -50,8 +50,10 @@ Remember that Jupyter Scheduler runs Jupyter notebooks in the background, either
 
 ### Functions description:
 
-* **gitData()**: function uses as argument input the name of the farm from which we desire to pull data from
-* **savingData()**: function uses the name of the farm as an argument and saves the data in a csv file. Notice that for every request data, we save the output in the cvs file as a new line input. If the file is not existent, it will be created in that directory
+* **gitData(gateway)**: function uses as argument object input the name of the farm from which we desire to pull data from
+
+* **savingData(gateway_name)**: function uses the name of the farm as an object argument and saves the data in a csv file. Notice that for every request data, we save the output in the cvs file as a new line input. If the file is not existent, it will be created in that directory
+
 * **job()**: function allows us to call both functions described above for every farm that we desire
      * time.sleep(15) was used as a 15 seconds request buffer since the API does not allow users to make calls in less than 10 seconds in between requests
 
@@ -87,9 +89,12 @@ The nature of my data requires a good way of graphicaly visualizing it in order 
 ### Function description:
 
 * **plot_df(df, Title)**: This function outputs a single interactive Plotly graph with all the features within the data frame.
+
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Title = input string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
+   
 * **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
+
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
 
