@@ -72,7 +72,13 @@ I defined a function that performs a series of operations with my input raw data
 5. Arranges all the values in an appropriate data frame with correct indexes and formating
 6. Returns a data frame
 
+### Function description:
 
+* **create_df(Farm, Month, RSP)**: This function creates a data frame based on the raw data files, resample it at the desired resampling period, uses linear interpolation to fill in missing values, calculates the water consumption at that period, and outputs a data frame arranged in optimal formatting to be used in future steps of my research.
+
+    * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2"...)
+    * Month = string specifying the Month and year of interest (i.e., "November 2022")
+    * RSP = Resampling period of interest, which is the input for pd.resample function where RSP is the offset string or object representing target conversion (i.e., "1min", "1H", "1W", "1M"...)
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
