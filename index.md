@@ -30,7 +30,7 @@ Livestock and poultry facilities commonly have alarm systems to notify caretaker
 
 **Disclaimer 1:** The notebook was not embedded in this website because it contains confidential information. Access will be provided for the instructor in a separate platform.
 
-**Disclaimer 2:** No interactive graphs were embedded in this website because it contains confidential information. Static snapshots were used as a replacement.
+**Disclaimer 2:** No interactive graphs were embedded in this website because it contains confidential information. Please refer to the notebook.
 
 * * *
 
@@ -209,20 +209,11 @@ The nature of my data requires a good way of graphically visualizing it in order
 
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Title = input string that will be displayed as graph title (i.e., "Farm1 Sep-Oct 2022 @ 20min")
-    * Plot output example:
-    
-        **When all the sensors/features are selected:**
-    **HERE**
-        **When only one sensors/feature is selected:**
-    **HERE**
    
 * **plot_dfHTW(df, Farm)**: This function outputs an interactive Plotly graph that contains three subplots tracing separate graphs for Humidity, Temperature, and Water. Furthermore, this plot has a dropdown menu where you can select the graph to show the farm orientation 1 and 2 separately or together.
 
     * df = input desired data frame to be plotted (i.e., "Farm1_20min_SepDec2022")
     * Farm = string specifying the Farm of interest (i.e., "Farm1", "Farm2", etc)
-    * Plot output example:
-    
-    **HERE**
     
 ```python
 import plotly.graph_objects as go
@@ -496,34 +487,14 @@ To test how easy it is to replicate and experiment with my functions, I first cr
 
 | Resampling window | Sensor         | Smoothing method  | Percentage of anomalies (using Isolation Forest) | Outputed Graph Name |
 |:----------------- |:---------------|:------------------|:-------------------------------------------------|---------------------|
-|20 minutes         | West Room Temp | None              | 10.01                                            | Treatment 1         |
-|20 minutes         | West Room Temp | Moving Average    | 9.94                                             | Treatment 1a        |  
-|20 minutes         | West Room Temp | Savitzky-Golay    | 10.01                                            | Treatment 1b        |
-|20 minutes         | West Room Temp | Wavelets          | 10.01                                            | Treatment 1c        |
-|1 day              | West Room Temp | None              | 15.57                                            | Treatment 2         |
-|1 day              | West Room Temp | Moving Average    | 15.57                                            | Treatment 2a        |
-|1 day              | West Room Temp | Savitzky-Golay    | 15.57                                            | Treatment 2b        |
-|1 day              | West Room Temp | Wavelets          | 15.57                                            | Treatment 2c        |
-
-#### Follow all the eight outputed graphs from the analysis above
-
-* **Treatment 1**
-**HERE**
-* **Treatment 1a**
-**HERE**
-* **Treatment 1b**
-**HERE**
-* **Treatment 1c**
-**HERE**
-    
-* **Treatment 2**
-**HERE**
-* **Treatment 2a**
-**HERE**
-* **Treatment 2b**
-**HERE**
-* **Treatment 2c**
-**HERE**
+|20 minutes         | West Room Temp | None              | 10.01                                            | Trial 1             |
+|20 minutes         | West Room Temp | Moving Average    | 9.94                                             | Trial 2             |  
+|20 minutes         | West Room Temp | Savitzky-Golay    | 10.01                                            | Trial 3             |
+|20 minutes         | West Room Temp | Wavelets          | 10.01                                            | Trial 4             |
+|1 day              | West Room Temp | None              | 15.57                                            | Trial 5             |
+|1 day              | West Room Temp | Moving Average    | 15.57                                            | Trial 6             |
+|1 day              | West Room Temp | Savitzky-Golay    | 15.57                                            | Trial 7             |
+|1 day              | West Room Temp | Wavelets          | 15.57                                            | Trial 8             |
 
 #### Answer to investigation questions given the results above:
 
