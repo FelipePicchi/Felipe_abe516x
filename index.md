@@ -537,13 +537,13 @@ To test how easy it is to replicate and experiment with my functions, I first cr
     I found that Savitzky-Golay was the method that performed better. But further fine-tuning of parameters is necessary to investigate its capabilities. Moreover, in the future, I will be testing and experimenting more with Wavelets since it has a lot of parameters and features I was unable to explore - and I believe it is capable of performing as well as the Savitzky-Golay. I might not move forward on using Moving Average in my research project since its performance was comparable to the actual data, and it also introduces a lag to the time series that might be detrimental to my analysis.
     
 * * *
-# Discussion
-    
-![pic1](/_includes/T1.png)
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
 
-```
-The final element.
-```
+# Discussion
+
+Final considerations and discussion, in this final project, I applied the knowledge I gained this semester, such as by configuring an API to make data requests to a cloud system, improving my data wrangling scripts to account for various farms in the same function, plotting interactive graphs using plotly - which aided me during data pattern exploration and recognition, and lastly, I gained confidence in working with machine learning models.
+
+Learning and applying these concepts are useful for us as researchers. Knowing how to configure an API to make data requests to a cloud system allows researchers to access large amounts of data quickly and efficiently. The basic concepts of data wrangling, such as creating data frames, performing resampling, and linear interpolations, allow researchers to work with messy, unstructured data more easily. Being comfortable with making interactive graphs using Plotly can help researchers visualize their data in new ways, allowing them to identify patterns and relationships that may not be immediately apparent. And lastly, working with machine learning models allows us as researchers to analyze our data more sophisticatedly, helping us make more accurate predictions and insights. In general, I only see the advantages of applying these concepts in my daily research practices. 
+
+Through this project, my biggest assumption/transformation that needs to be noticed is that all the missing values were filled by linear interpolation without accounting for the length of the missing window. That is why I made a note in the Data Wrangling portion of this project saying that future work needs to be done to account for if only one or two hours of observations were missing and the use of linear interpolation to impute the missing observations because it is expected no dramatic change in the parameters within a brief period. However, if more than two hours of data are missing during the daytime, we discard the entire day’s data because interpolation may be unreliable over long time windows.
+
+Overall, I would say that my analysis does attain to FAIR principles, given that if my input files were to change, the user would have to change only a few function parameters (such as the file name). Moreover, the Jupyter Notebook is well annotated, containing introductions for every function and a brief explanation of their parameters. At the same time, the analysis portion has comments and follows a very natural workflow pattern. The best part of most of my functions is that you can alter the parameters to say if you want figures to be displayed. Furthermore, all graphs are also returned in HTML to ease sharing and visualization in a widescreen mode.
